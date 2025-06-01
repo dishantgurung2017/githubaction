@@ -1,0 +1,37 @@
+name: Python CI    #workflow name
+
+#Trigger the workflow based on events like push, pull, merge, delete
+on:
+    push:     #Event
+       brances:
+        - main
+    pull_request:
+        branches:
+            -main
+
+jobs:
+    test:
+        runs-on: ubuntu-latest     #windows, mac-os
+
+        steps:
+            #Step 1: Check  out the code from the repository
+            - name: Check out code
+              uses: actions/checkout@v2
+
+            #Step 2: Set up Python environment
+            - name: Set up Ptyhon
+              uses: actions/setup-python@v2
+              with:
+                python-version: '3.10'
+
+            #Step 3: Install dependencies
+            - name: Install dependencies
+              run: |
+                 python -m pip install --upgrade pip
+                 pip install -r requirements.txt
+
+            #Step 4: Run tests
+            - name: Run tests
+              run: pytest
+                
+            
