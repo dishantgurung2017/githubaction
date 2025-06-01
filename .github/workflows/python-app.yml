@@ -3,7 +3,7 @@ name: Python CI    #workflow name
 #Trigger the workflow based on events like push, pull, merge, delete
 on:
     push:     #Event
-       brances:
+       branches:
         - main
     pull_request:
         branches:
